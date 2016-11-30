@@ -1,0 +1,135 @@
+HTML{
+	font-family : 'Open Sans',sans-serif;
+}
+body{
+	margin : 0px;
+	padding : 0px;
+}
+
+a{
+	text-decoration : none;
+}
+
+/* top */
+.top{
+	width : 100%;
+	height : 720px;
+	background-repeat : no-repeat;
+	background-image : url("../img/top.jpg");
+	background-size : cover;
+}
+#textTop{
+	border : solid;
+	border-color : white;
+	width : 300px;
+	text-align : center;
+	text-transform : uppercase;
+	font-family : "Open Sans";
+	font-size : 35px;
+	padding : 10px;
+	position : absolute;
+	top : -200px;
+	left : 0px;
+	color : white;
+}
+#textTop:hover{
+	transition-property: color,background-color,border-color;
+	transition-duration: 0.3s;
+	transition-timing-fonction: linear;
+	cursor : pointer;
+	background-color : rgba(200, 200, 255, 0.5)
+}
+
+.imgTop{
+	width : 100%;
+}
+
+
+/* menu bar */
+.menuBar{
+	width : 100%;
+	height : 70px;
+	background-color : #000022;
+}
+.fixed-top{
+	opacity : 0.95;
+	position : fixed;
+	top : 0px;
+	z-index : 10;
+}
+.menuButton{
+	font-family : 'Open Sans';
+	margin : 20px;
+	color : white;
+	font-size : 20px;
+}
+
+.menuBenoit{
+	
+	float : left;
+} 
+.menuPresentation, .menuCompetence{
+	text-transform : uppercase;
+	float : right;
+}
+
+
+/* Content */
+#content{
+	font-family : 'Open Sans';
+	margin-top : 0px;
+}
+.itemContent{
+	padding : 20px;
+	text-align : justify;
+}
+
+.titleItemN, .titleItemB{
+	margin-top : 25px;
+	margin-bottom : 80px;
+	font-family : 'Open Sans';
+	text-align : center;
+	font-size : 50px;
+}
+.titleItemN{
+	
+}
+
+.barB, .barN{
+	margin-top : 10px;
+	width : 60px;
+	height : 4px;
+	border : 0;
+}
+.barB{
+	background : rgba(100,100,100,0.5);
+}
+.barN{
+	background : rgba(255,255,255,0.5);
+}
+/* presentation */
+#presentation{
+	background-color : #5555FF;
+	color : white;
+}
+
+
+
+
+
+
+/*experience*/
+#experience{
+	color : white;
+	font-size: 100%;
+	font-family: "Droid Serif", serif;
+	color: #7f8c97;
+}
+
+/* font */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Open Sans'), local('OpenSans'), url('http://themes.googleusercontent.com/static/fonts/opensans/v5/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff') format('woff');
+}
