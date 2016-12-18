@@ -1,8 +1,9 @@
 $(window).load(function(){
 //	$('#textTop').css("top",($(window).height()-$('#textTop').height())/2);
-	$('#textTop').css("left",($(window).width()-$('#textTop').width())/2);
-	$('#textTop').animate({top:($(window).height()-$('#textTop').height())/2+50},300,"swing");
-	$('#textTop').animate({top:($(window).height()-$('#textTop').height())/2},300,"swing");
+//	$('#textTop').css("left",($(window).width()-$('#textTop').width())/5);
+	$('#textTop').css("left",100);
+	$('#textTop').animate({top:($(window).height()-$('#textTop').height())/2+62},300,"swing");
+	$('#textTop').animate({top:($(window).height()-$('#textTop').height())/2+12},300,"swing");
 });
 $(window).scroll(function (){
 	if($(document).scrollTop()>=$('.top').height()){
@@ -22,7 +23,7 @@ $(window).scroll(function (){
 	});
 });*/
 $(document).ready(function(){
-	$('#textTop').click(function(){
+	$('#textTop .savoirPlus').click(function(){
 		$("html").animate({scrollTop:$('.top').height()},500);
 		});
 });
