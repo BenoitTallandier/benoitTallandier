@@ -1,3 +1,4 @@
+var i=0;
 $(window).load(function(){
 //	$('#textTop').css("top",($(window).height()-$('#textTop').height())/2);
 //	$('#textTop').css("left",($(window).width()-$('#textTop').width())/5);
@@ -13,6 +14,21 @@ $(window).scroll(function (){
 	else{
 		$('.menuBar').removeClass('fixed-top');
 		$('#content').css("margin-top","0px");
+	}
+	var windowBottom = $(window).height();
+	if($(document).scrollTop()>=$('#competence').position().top-windowBottom+500){
+		if(i==0){
+			$('.chart').easyPieChart({
+				easing: 'easeOutBounce',
+				animate : 3000,
+				barColor : "#FFFFFF",
+				trackColor : "#000022",
+				onStep: function(from, to, percent) {
+					$(this.el).find('.percent').text(Math.round(percent));
+					i++;
+				}
+			});
+		}
 	}
 });
 /*$(window).on('scroll', function(){
