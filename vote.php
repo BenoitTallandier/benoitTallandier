@@ -42,6 +42,7 @@
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookies_file);
 
 		$page = curl_exec($ch);
+		print($page);
 
 		//curl_close($ch);
 		/**************************************************
@@ -74,6 +75,7 @@
 
 		$page_content = curl_exec($ch);
 
+		print($page_content);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
 		curl_close($ch);
