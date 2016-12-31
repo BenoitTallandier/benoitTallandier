@@ -1,17 +1,8 @@
 <?php
-	//int ignore_user_abort(true);
+	ignore_user_abort(true);
 	/* DB Connection  */
-	$host_name  = "localhost";
-	$database   = "vote";
-	$user_name  = "vote";
-	$password   = "aze";
-	$db = mysqli_connect($host_name, $user_name, $password, $database);
-	if(mysqli_connect_errno()) {die('The connection to the database could not be established.');}
-	$db->set_charset("utf8");
-	
-	
-	
-	
+	$host_name  = "137.74.194.232";
+	include("DBconnection.php");
 	while(1){
 		
 		$NombreOUT = file_get_contents('http://api.lifecraft.fr/rpg.php?ids=107827');
@@ -95,10 +86,11 @@
 
 		print($page_content);
 		flush();
-		$heure=date('H')+1;
+		$heure=date('H')+0;
 		$today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
 		mysqli_query($db,"INSERT INTO vote (date) VALUES ('".$today."')");
-		sleep(10800);
+		sleep(1800);
+		//sleep(10800);
 	}
 	/**************************************************
 	Troisème requête : Déconnexion
