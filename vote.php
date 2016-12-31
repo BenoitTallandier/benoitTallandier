@@ -1,7 +1,9 @@
+
 <?php
 	ignore_user_abort(true);
+	ini_set('display_errors',1);
+//	error_reporting(E_ALL);
 	/* DB Connection  */
-	$host_name  = "137.74.194.232";
 	include("DBconnection.php");
 	while(1){
 		
@@ -39,14 +41,14 @@
 
 		curl_setopt($ch, CURLOPT_POST, true);
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "login=&passlog=&hidden=log&logon=");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "login=clemoland&passlog=moktar67&hidden=log&logon=");
 
 		// Fichier dans lequel cURL va écrire les cookies
 		// (pour y stocker les cookies de session)
 		curl_setopt($ch, CURLOPT_COOKIEJAR, $cookies_file);
 
 		$page = curl_exec($ch);
-		print($page);
+//		print($page);
 
 		//curl_close($ch);
 		/**************************************************
@@ -79,17 +81,30 @@
 
 		$page_content = curl_exec($ch);
 
-		print($page_content);
+//		print($page_content);
 		$http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-
+		$result = 666;
+		$valeur = 600;
 		curl_close($ch);
-
-		print($page_content);
-		flush();
+		if(preg_match("/Félicitation, ton vote/",$page_content)){
+			$result = 1;
+			$valeur = 10810;
+		}
+		else{
+			echo "nop";
+			flush();
+			$result = 0;
+			$valeur = 600;
+		}
 		$heure=date('H')+0;
 		$today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
-		mysqli_query($db,"INSERT INTO vote (date) VALUES ('".$today."')");
-		sleep(1800);
+		$query = "INSERT INTO vote (`date`, `result`) VALUES ('".$today."','".$result."')";
+		echo $query."</br>";
+		flush();
+		echo "sleep : ".$valeur."</br>";
+		flush();
+		mysqli_query($db,$query);
+		sleep($valeur);
 		//sleep(10800);
 	}
 	/**************************************************
