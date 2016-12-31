@@ -1,6 +1,12 @@
 <?php
-	int ignore_user_abort(true);
+	echo "start";
+	flush();
+	ini_set('display_errors',1);
+	error_reporting(E_ALL);
+	ignore_user_abort(true);
 	while(1){
+		echo "aze";
+		flush();
 		$NombreOUT = file_get_contents('http://api.lifecraft.fr/rpg.php?ids=107827');
 		echo $NombreOUT;
 
@@ -8,9 +14,7 @@
 
 		$cookies_file = __DIR__.'/cookies.txt';
 
-		/**************************************************
-		Première requête : Connexion
-		**************************************************/
+		//CONNECTION
 
 		$url = 'http://intuition-games.net/index.php?page=vote';
 
@@ -35,7 +39,7 @@
 
 		curl_setopt($ch, CURLOPT_POST, true);
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "login=&passlog=&hidden=log&logon=");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "login=clemoland&passlog=moktar67&hidden=log&logon=");
 
 		// Fichier dans lequel cURL va écrire les cookies
 		// (pour y stocker les cookies de session)
@@ -43,11 +47,10 @@
 
 		$page = curl_exec($ch);
 		print($page);
-
+		flush();
 		//curl_close($ch);
-		/**************************************************
-		Seconde requête : Récupération du contenu
-		**************************************************/
+
+		// VOTE
 
 		$url = 'http://intuition-games.net/index.php?page=vote';
 
@@ -81,6 +84,8 @@
 		curl_close($ch);
 
 		print($page_content);
+		flush();
+		/*
 		$fp = fopen ("compteur.txt", "r+");
 		// Instruction 2
 		$nb_visites = fgets ($fp, 11);
@@ -91,9 +96,9 @@
 		// Instruction 5
 		fputs ($fp, $nb_visites);
 		// Instrcution 6
-		fclose ($fp);
-		sleep(10800);
-	}
+		fclose ($fp);*/
+		sleep(10850);
+	} 
 	/**************************************************
 	Troisème requête : Déconnexion
 	**************************************************/
