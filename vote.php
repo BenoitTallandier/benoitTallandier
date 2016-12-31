@@ -1,6 +1,19 @@
 <?php
-	int ignore_user_abort(true);
+	//int ignore_user_abort(true);
+	/* DB Connection  */
+	$host_name  = "localhost";
+	$database   = "vote";
+	$user_name  = "vote";
+	$password   = "aze";
+	$db = mysqli_connect($host_name, $user_name, $password, $database);
+	if(mysqli_connect_errno()) {die('The connection to the database could not be established.');}
+	$db->set_charset("utf8");
+	
+	
+	
+	
 	while(1){
+		
 		$NombreOUT = file_get_contents('http://api.lifecraft.fr/rpg.php?ids=107827');
 		echo $NombreOUT;
 
@@ -81,17 +94,10 @@
 		curl_close($ch);
 
 		print($page_content);
-		$fp = fopen ("compteur.txt", "r+");
-		// Instruction 2
-		$nb_visites = fgets ($fp, 11);
-		// Instruction 3
-		$nb_visites = $nb_visites + 1;
-		// Instruction 4
-		fseek ($fp, 0);
-		// Instruction 5
-		fputs ($fp, $nb_visites);
-		// Instrcution 6
-		fclose ($fp);
+		flush();
+		$heure=date('H')+1;
+		$today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
+		mysqli_query($db,"INSERT INTO vote (date) VALUES ('".$today."')");
 		sleep(10800);
 	}
 	/**************************************************
