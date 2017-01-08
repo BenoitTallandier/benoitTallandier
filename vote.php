@@ -4,7 +4,8 @@
 	ini_set('display_errors',1);
 //	error_reporting(E_ALL);
 	/* DB Connection  */
-	include("DBconnection.php");
+	include("DBconnectionVote.php");
+	$nameBot = "benjifarmer";
 	while(1){
 		
 		$NombreOUT = file_get_contents('http://api.lifecraft.fr/rpg.php?ids=107827');
@@ -14,6 +15,11 @@
 
 		$cookies_file = __DIR__.'/cookies.txt';
 
+		$r = mysqli_query($db,"SELECT * FROM bot WHERE nameBot='".$nameBot."'");
+		extract(mysqli_fetch_array($r));
+		if($isActive==0){
+			break;
+		}
 		/**************************************************
 		Première requête : Connexion
 		**************************************************/
@@ -41,7 +47,7 @@
 
 		curl_setopt($ch, CURLOPT_POST, true);
 
-		curl_setopt($ch, CURLOPT_POSTFIELDS, "login=clemoland&passlog=moktar67&hidden=log&logon=");
+		curl_setopt($ch, CURLOPT_POSTFIELDS, "login=".$userName."&passlog=".$userPass."&hidden=log&logon=");
 
 		// Fichier dans lequel cURL va écrire les cookies
 		// (pour y stocker les cookies de session)
@@ -88,24 +94,24 @@
 		curl_close($ch);
 		if(preg_match("/Félicitation, ton vote/",$page_content)){
 			$result = 1;
-			$valeur = 10810;
+			$valeur = max(10810,$reload) + intval(rand(1,90));
 		}
 		else{
 			echo "nop";
 			flush();
 			$result = 0;
-			$valeur = 600;
+			$valeur = 600 + intval(rand(1,90));
 		}
 		$heure=date('H')+0;
 		$today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
-		$query = "INSERT INTO vote (`date`, `result`) VALUES ('".$today."','".$result."')";
+		$query = "INSERT INTO vote (`date`,`bot`,`user`,`result`) VALUES ('".$today."','".$nameBot."','".$userName."','".$result."')";
 		echo $query."</br>";
 		flush();
 		echo "sleep : ".$valeur."</br>";
 		flush();
 		mysqli_query($db,$query);
+		break;
 		sleep($valeur);
-		//sleep(10800);
 	}
 	/**************************************************
 	Troisème requête : Déconnexion
