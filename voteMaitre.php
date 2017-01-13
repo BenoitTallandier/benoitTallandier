@@ -43,7 +43,7 @@
 			}
 		}
 		else{
-			sleep(3600+intval(rand(1,90)));
+			sleep(10800+intval(rand(1,90)));
 		}
 		echo "heure : ".date('H').":".date('i')."</br>";
 	}
