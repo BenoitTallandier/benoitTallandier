@@ -37,7 +37,7 @@
 			}
 		}
 		$heure=date('H')+0;
-		if($heure>=23 || $heure<5){
+		if($heure<5){
 			while($heure>=23 || $heure<5){
 				sleep(600);
 			}
