@@ -37,13 +37,14 @@
 			}
 		}
 		$heure=date('H')+0;
-		if($heure>=23 || $heure<5){
+		if($heure<5){
 			while($heure>=23 || $heure<5){
 				sleep(600);
+				$heure=date('H')+0;
 			}
 		}
 		else{
-			sleep(3600+intval(rand(1,90)));
+			sleep(10800+intval(rand(1,90)));
 		}
 		echo "heure : ".date('H').":".date('i')."</br>";
 	}
