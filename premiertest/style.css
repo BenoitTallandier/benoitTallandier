@@ -150,7 +150,6 @@ a:hover{
 @media screen and (max-width: 980px){
 	
 	#bloc_index{
-		background-color : red;
 		font-size : 30px;
 		width : 830px;
 		padding : 20px;
@@ -209,7 +208,6 @@ a:hover{
 @media screen and (max-width: 780px){
 	
 	#bloc_index{
-		background-color : red;
 		font-size : 20px;
 		width : 630px;
 		padding : 20px;
@@ -267,7 +265,6 @@ a:hover{
 @media screen and (max-width: 680px){
 	
 	#bloc_index{
-		background-color : red;
 		font-size : 20px;
 		width : 530px;
 		padding : 20px;
