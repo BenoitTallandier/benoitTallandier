@@ -20,7 +20,7 @@ $(window).scroll(function (){
 		if(i==0){
 			$('.chart').easyPieChart({
 				easing: 'easeOutBounce',
-				animate : 3000,
+				animate : 2000,
 				barColor : "#FFFFFF",
 				trackColor : "#000022",
 				onStep: function(from, to, percent) {
@@ -41,5 +41,18 @@ $(window).scroll(function (){
 $(document).ready(function(){
 	$('#textTop .savoirPlus').click(function(){
 		$("html").animate({scrollTop:$('.top').height()},500);
-		});
+	});
+	$('#resetBt').click(function(){
+		$("html").animate({scrollTop:0},500);
+	});
+	
+	$('#presentationBt').click(function(){
+		$("html").animate({scrollTop:$('.top').height()},500);
+	});
+	$('#competenceBt').click(function(){
+		$("html").animate({scrollTop:$('.top').height()+40+$('#presentation').height()},500);
+	});
+	$('#expBt').click(function(){
+		$("html").animate({scrollTop:$('.top').height()+80+$('#presentation').height()+$('#competence').height()},500);
+	});		
 });

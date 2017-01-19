@@ -1,7 +1,7 @@
 <?php
-$host_name  = "";
-$database   = "";
-$user_name  = "";
+$host_name  = "localhost";
+$database   = "maman";
+$user_name  = "root";
 $password   = "";
 $db = mysqli_connect($host_name, $user_name, $password, $database);
 if(mysqli_connect_errno()) {die('The connection to the database could not be established.');}

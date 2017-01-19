@@ -103,13 +103,12 @@
 										echo "<span class='lien_chapitre' num=".$id_chapitre." >".$name_chapitre."</span></br>";
 										echo "<div class='chapitre' id='chapitre".$id_chapitre."'>";
 											$r2 = mysqli_query($db,"SELECT * FROM question_tot WHERE chapitre=".$id_chapitre."");
-											if(mysqli_fetch_array($r2)){
-												while($l2 = mysqli_fetch_array($r2)){
-													extract($l2);
-													echo "<input type='checkbox' name='question".$iform."' value='".$id_question."'>".$question."</input></br>";
-												$iform+=1;
-												}
+											while($l2 = mysqli_fetch_array($r2)){
+												extract($l2);
+												echo "<input type='checkbox' name='question".$iform."' value='".$id_question."'>".$question."</input></br>";
+											$iform+=1;
 											}
+										
 										echo"</div>";
 									}
 								echo "</div>";							

@@ -8,7 +8,7 @@
 echo "<HTML>";
 	include "connection.php";
 	// prise d'info
-	$heure=date('H')+2;
+	$heure=date('H')+1;
 	$today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
 	// fin de prise d'info
 	$Result=mysqli_query($db,"SELECT * FROM information ORDER BY id_info DESC LIMIT 1");
@@ -19,8 +19,10 @@ echo "<HTML>";
 	{
 		echo "problème de paramétrage";
 	}
-
-	if( $date_debut <= $today AND $today <= $date_fin)
+	echo "date :".$date_debut."</br>";
+	echo " date :".$today."</br>";
+	echo " date :".$date_fin;
+	if( strtotime($date_debut) <= strtotime($today) AND strtotime($today) <= strtotime($date_fin))
 	{
 		$_SESSION['session_aut']=true;
 	}
@@ -28,7 +30,7 @@ echo "<HTML>";
 	{
 		$_SESSION['session_aut']=false;
 	}
-
+	
 
 
 	if(!isset($_SESSION['id_user']))
@@ -63,16 +65,25 @@ echo "<HTML>";
 			echo "</div>";
 		}
 	}
+	else if(isset($_POST['pass']) AND $_POST['name']=="agnest"){
+		echo "<meta http-equiv='refresh' content='0;URL=administration.php'>";		
+	}
 	else
 	{
 		if($_SESSION['session_aut'])
 		{
 			echo "<a href='question.php'>Départ</a></br>";
-			echo "<a href='dec.php'>deconnexion</a>";
+			//echo "<a href='dec.php'>deconnexion</a>";
 		}
 		else
 		{
-			echo "session expirée";
+			echo "<div id='bloc_index'>";
+				echo "Le temps est écoulé";
+			echo "</div>";
+				echo "<form style='text-align:center;' method='post' action='index.php'>";
+					echo "<input type='text' name='name' placeholder='Nom'></input></br>";
+					echo "<input type='submit' name='pass'>";
+				echo "</form>";
 		}
 	}
 echo "</HTML>";

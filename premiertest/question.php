@@ -9,7 +9,7 @@
 <?php
 include "connection.php";
 ////
-$heure=date('H')+2;
+$heure=date('H')+1;
 $today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
 $bonne_reponse = 1;
 $fausse_reponse = 0;
@@ -20,7 +20,7 @@ if($Result)
 }
 
 
-if( $date_debut <= $today AND $today <= $date_fin)
+if( strtotime($date_debut) <= strtotime($today) AND strtotime($today) <= strtotime($date_fin))
 {
 	$_SESSION['session_aut']=true;
 }
@@ -36,7 +36,7 @@ if(!isset($_SESSION['id_user']) or !isset($_SESSION['session_aut']))
 	echo "<meta http-equiv='refresh' content='0;URL=index.php'>";
 
 }
-/*if($_SESSION['session_aut']==true){
+if($_SESSION['session_aut']!=true){
 		$r=mysqli_query($db,"SELECT * FROM resultat,question WHERE id_user=".$_SESSION['id_user']." AND ref_question=id_question");
 		if(mysqli_num_rows($r)>0){
 			echo "<div style='text-align:center;margin-top:100px;'><h2>Resultat</h2></br>";
@@ -49,7 +49,7 @@ if(!isset($_SESSION['id_user']) or !isset($_SESSION['session_aut']))
 			echo"</div>";
 		}
 		else{header("Location: index.php");}
-}*/
+}
 else
 {
 	if(isset($_POST['valider'])){

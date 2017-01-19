@@ -42,6 +42,7 @@ if(isset($_SESSION['id_user']) and $_SESSION['id_user']==0){
 			if(isset($_POST['vrai1'])){
 				mysqli_query($db,"INSERT INTO reponse_tot (reponse,ref_question,state) VALUES('vrai','".$id_question."','1')");
 				mysqli_query($db,"INSERT INTO reponse_tot (reponse,ref_question,state) VALUES('faux','".$id_question."','0')");
+
 			}
 			else{
 				mysqli_query($db,"INSERT INTO reponse_tot (reponse,ref_question,state) VALUES('vrai','".$id_question."','0')");

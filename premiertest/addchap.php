@@ -18,7 +18,9 @@ if(isset($_SESSION['id_user']) and $_SESSION['id_user']==0){
 
 	if(isset($_POST['addchap'])){
 		$reponse=modif($_POST['chap']);
-		mysqli_query($db,"INSERT INTO chapitres (name_chapitre,matiere) VALUES('".$reponse."','".$_POST['mat']."')");
+		$q = "INSERT INTO chapitres (name_chapitre,matiere) VALUES('".$reponse."','".$_POST['mat']."')";
+		mysqli_query($db,$q);
+		echo $q."</br>";
 		echo "<div id='bloc_add_question' style='text-align:center;color:green'>Le chapitre a été ajouté </br><a href='administration.php'>retour</a></div>";
 	}
 	else{
