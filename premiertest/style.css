@@ -36,13 +36,13 @@ a:hover{
 #bloc_question{
 	text-align : center;
 	font-family : "rockwell";
-	font-size : 30px;
+	font-size : 25px;
 	background-color : #CCCCCC;
 	width : 800px;
 	padding : 50px;
 	margin : auto;
 	margin-top: 50vh;
-	transform: translateY(-50%);
+	transform: translateY(-30%);
 	border:none;
 	border-width : 1px;
 	border-color : grey;
@@ -147,6 +147,63 @@ a:hover{
 	margin-left : 20px;
 	margin-bottom : 10px;
 }
+
+@media screen and (max-width: 1500px){
+	
+	#bloc_index{
+		background-color : red;
+		font-size : 30px;
+		width : 830px;
+		padding : 20px;
+		margin-top: 20px;
+		line-height: 70px;
+	}
+
+	#bloc_index input{
+		padding-left : 10px;
+		width : 650px;
+		height : 50px;
+		font-family : "rockwell";
+		font-size : 40px;
+	}
+	
+
+	#bloc_question{
+		text-align : center;
+		font-family : "rockwell";
+		font-size : 20px;
+		width : 820px;
+		padding : 10px;
+		margin : auto;
+		margin-top: 50px;
+		border:none;
+		border-width : 1px;
+		border-color : grey;
+		box-shadow : 0 0 5px;
+		line-height: 20px;
+	}
+	.reponse{
+		font-size : 15px;
+	}
+
+	#bloc_resultat{
+		text-align : center;
+		font-family : "rockwell";
+		font-size : 15px;
+		background-color : #CCCCCC;
+		max-width : 1000px;
+		padding : 10px;
+		margin : auto;
+		margin-top : 50px;
+		transform : translateY(0%);
+		border : none;
+		border-width : 1px;
+		border-color : grey;
+		box-shadow : 0 0 5px;
+		line-height : 20px;
+	}
+}
+
 @media screen and (max-width: 980px){
 	
 	#bloc_index{

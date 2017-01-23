@@ -6,6 +6,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="jquery.js" type="text/javascript"></script>
 <meta charset="UTF-8">
+
 <?php
 include "connection.php";
 ////
@@ -75,7 +76,8 @@ else
 
 	}
 	
-	
+	$r = mysqli_query($db,"SELECT * FROM question");
+	$total = mysqli_num_rows($r);
 	$Query = "SELECT * FROM  question WHERE id_question NOT IN (SELECT ref_question FROM resultat WHERE id_user=".$_SESSION['id_user'].") ORDER BY RAND() ";
 	$Result = mysqli_query($db,$Query);
 	$nombre = mysqli_num_rows($Result);
@@ -113,6 +115,8 @@ else
 				echo "</br><input id='val_question' type='submit' name='valider' value='valider'>";						
 				echo "<input id='val_question' type='submit' name='passe' value='passer'>";						
 			echo "</form>";
+			$pour = ($total-$nombre)/$total *100;
+			echo "<div style='float:right;color:grey;'>".$pour."%,</div>";
 		echo "</div>";
 	}
 }
