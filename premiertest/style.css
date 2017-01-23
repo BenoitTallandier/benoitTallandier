@@ -81,7 +81,7 @@ a:hover{
 	padding : 50px;
 	margin : auto;
 	margin-top: 50vh;
-	transform: translateY(-50%);
+	transform: translateY(0%);
 	border:none;
 	border-width : 1px;
 	border-color : grey;
