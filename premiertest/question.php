@@ -75,27 +75,28 @@ else
 		echo "<meta http-equiv='refresh' content='0;URL=question.php'>";
 
 	}
-	
-	$r = mysqli_query($db,"SELECT * FROM question");
-	$total = mysqli_num_rows($r);
-	$Query = "SELECT * FROM  question WHERE id_question NOT IN (SELECT ref_question FROM resultat WHERE id_user=".$_SESSION['id_user'].") ORDER BY RAND() ";
-	$Result = mysqli_query($db,$Query);
-	$nombre = mysqli_num_rows($Result);
-	if ($nombre<=0){
-		echo "<div id='bloc_resultat'>";
-			echo "<h2>Resultat</h2></br>";
-			echo "<TABLE>";
-				$r=mysqli_query($db,"SELECT * FROM resultat,question WHERE id_user=".$_SESSION['id_user']." AND ref_question=id_question");
-				while($Line = mysqli_fetch_array($r)){
-					echo "<TR>";
-						extract($Line);
-						echo "<TD style='text-align:right;'>".$question." :</TD><TD>";
-						if($point>0){echo"<span style='color:green;'>Bonne réponse</span></br>";}
-						else{echo"<span style='color:red;'>Mauvaise réponse</span></br>";}
-					echo "</TD></TR>";
-				}
-			echo "</TABLE>";
-		echo "</div>";
+	else{		
+		$r = mysqli_query($db,"SELECT * FROM question");
+		$total = mysqli_num_rows($r);
+		$Query = "SELECT * FROM  question WHERE id_question NOT IN (SELECT ref_question FROM resultat WHERE id_user=".$_SESSION['id_user'].") ORDER BY RAND() ";
+		$Result = mysqli_query($db,$Query);
+		$nombre = mysqli_num_rows($Result);
+		if ($nombre<=0){
+			echo "<div id='bloc_resultat'>";
+				echo "<h2>Resultat</h2></br>";
+				echo "<TABLE>";
+					$r=mysqli_query($db,"SELECT * FROM resultat,question WHERE id_user=".$_SESSION['id_user']." AND ref_question=id_question");
+					while($Line = mysqli_fetch_array($r)){
+						echo "<TR>";
+							extract($Line);
+							echo "<TD style='text-align:right;'>".$question." :</TD><TD>";
+							if($point>0){echo"<span style='color:green;'>Bonne réponse</span></br>";}
+							else{echo"<span style='color:red;'>Mauvaise réponse</span></br>";}
+						echo "</TD></TR>";
+					}
+				echo "</TABLE>";
+			echo "</div>";
+		}
 	}
 	else{
 		extract(mysqli_fetch_array($Result));
