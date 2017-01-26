@@ -36,7 +36,7 @@
 						echo "<TR>";
 							echo"<TD class='question_admin'>Nom</TD>";
 							echo"<TD class='question_admin'>Note</TD>";
-							if($re = mysqli_query($db,"SELECT * FROM user")){
+							if($re = mysqli_query($db,"SELECT * FROM users")){
 								$nbUser = mysqli_num_rows();
 							}
 							else{
