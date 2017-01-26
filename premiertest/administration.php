@@ -36,14 +36,19 @@
 						echo "<TR>";
 							echo"<TD class='question_admin'>Nom</TD>";
 							echo"<TD class='question_admin'>Note</TD>";
-							$nbUser = mysqli_num_rows(mysqli_query($db,"SELECT * FROM user"));
+							if($re = mysqli_query($db,"SELECT * FROM user")){
+								$nbUser = mysqli_num_rows();
+							}
+							else{
+								$nbUser = 30;
+							}
 							$re=mysqli_query($db,"SELECT * FROM question ORDER BY id_question");
 							while($line = mysqli_fetch_array($re)){
 								extract($line);
 								$pour = 0;
 								if($result1 = mysqli_query($db,"SELECT * FROM resultat WHERE ref_question='".$id_question."' AND point='1'")){
 									$pour = mysqli_num_rows($result1);
-									echo $pour;
+									
 								}
 								$pour = $pour/$nbUser * 100;
 								echo"<TD class='question_admin'>".$question."<div style='font-size:10px;'>".$pour."%</div></TD>";
