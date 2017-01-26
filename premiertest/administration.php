@@ -51,7 +51,7 @@
 									
 								}
 								$pour = $pour/$nbUser * 100;
-								echo"<TD class='question_admin'>".$question."<div style='font-size:10px;'>".floor($pour,1)."%</div></TD>";
+								echo"<TD class='question_admin'>".$question."<div style='font-size:10px;'>".round($pour,1)."%</div></TD>";
 							}
 						echo "</TR>";
 						$result = mysqli_query($db,"SELECT * FROM question");
@@ -68,7 +68,7 @@
 							$note=$note/$total*20;
 							echo "<TR>";
 								echo "<TD>".$name_user." ".$first_name_user."</TD>";
-								echo "<TD>".floor($note,1)."/20</TD>";
+								echo "<TD>".round($note,1)."/20</TD>";
 								$r = mysqli_query($db,"SELECT point FROM resultat WHERE id_user=".$id_user." ORDER BY ref_question");
 								if($r){
 									while($l = mysqli_fetch_array($r)){
