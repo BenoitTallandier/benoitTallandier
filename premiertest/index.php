@@ -65,7 +65,8 @@ echo "<HTML>";
 			echo "</div>";
 		}
 	}
-	else if(isset($_POST['pass']) AND $_POST['name']=="agnest"){
+	else if(isset($_POST['name']) AND $_POST['name']=="agnest"){
+		$_SESSION['id_user'] = 0;							
 		echo "<meta http-equiv='refresh' content='0;URL=administration.php'>";		
 	}
 	else
@@ -82,7 +83,7 @@ echo "<HTML>";
 			echo "</div>";
 				echo "<form style='text-align:center;' method='post' action='index.php'>";
 					echo "<input type='text' name='name' placeholder='Nom'></input></br>";
-					echo "<input type='submit' name='pass'>";
+					echo "<input type='submit' name='connexion'>";
 				echo "</form>";
 		}
 	}
