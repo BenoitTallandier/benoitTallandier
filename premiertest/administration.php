@@ -36,21 +36,30 @@
 						echo "<TR>";
 							echo"<TD class='question_admin'>Nom</TD>";
 							echo"<TD class='question_admin'>Note</TD>";
+							$nbUser = mysqli_num_rows(mysqli_query($db,"SELECT * FROM user"));
 							$re=mysqli_query($db,"SELECT * FROM question ORDER BY id_question");
 							while($line = mysqli_fetch_array($re)){
 								extract($line);
-								echo"<TD class='question_admin'>".$question."</TD>";
+								$pour = 0;
+								if($result1 = mysqli_query($db,"SELECT * FROM resultat WHERE ref_question='".$id_question."' AND point='1'")){
+									$pour = mysqli_num_rows($result1);
+								}
+								$pour = $pour/$nbUser * 100;
+								echo"<TD class='question_admin'>".$question."<div style='font-size:10px;'>".$pour."%</div></TD>";
 							}
 						echo "</TR>";
+						$result = mysqli_query($db,"SELECT * FROM question");
+						$total = mysqli_num_rows($result);
 						$Result=mysqli_query($db,"SELECT * FROM users");
 						while( $Line = mysqli_fetch_array($Result))
 						{
 							$note=0;
 							extract($Line);
-							if($result1 = mysqli_query($db,"SELECT AVG(point) as note FROM resultat WHERE id_user=".$id_user)){
-								extract(mysqli_fetch_array($result1));
+							
+							if($result1 = mysqli_query($db,"SELECT * FROM resultat WHERE id_user=".$id_user." AND point='1'")){
+								$note = mysqli_num_rows($result1);
 							}
-							$note=20*$note;
+							$note=$note/$total*20;
 							echo "<TR>";
 								echo "<TD>".$name_user." ".$first_name_user."</TD>";
 								echo "<TD>".$note."/20</TD>";
