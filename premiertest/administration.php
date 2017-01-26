@@ -40,7 +40,7 @@
 								$nbUser = mysqli_num_rows();
 							}
 							else{
-								$nbUser = 30;
+								$nbUser = 2;
 							}
 							$re=mysqli_query($db,"SELECT * FROM question ORDER BY id_question");
 							while($line = mysqli_fetch_array($re)){
