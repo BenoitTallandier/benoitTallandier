@@ -43,6 +43,7 @@
 								$pour = 0;
 								if($result1 = mysqli_query($db,"SELECT * FROM resultat WHERE ref_question='".$id_question."' AND point='1'")){
 									$pour = mysqli_num_rows($result1);
+									echo $pour;
 								}
 								$pour = $pour/$nbUser * 100;
 								echo"<TD class='question_admin'>".$question."<div style='font-size:10px;'>".$pour."%</div></TD>";
