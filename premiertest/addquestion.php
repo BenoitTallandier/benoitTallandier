@@ -23,17 +23,18 @@ if(isset($_SESSION['id_user']) and $_SESSION['id_user']==0){
 		$commentaire = modif($_POST['commentaire']);
 		$query = "INSERT INTO question_tot (question,chapitre,commentaire,matiere) VALUES('".$question."','".$_POST['chap_question']."','".$commentaire."','".$_POST['mat_question']."')";
 		mysqli_query($db,$query);
-		extract( mysqli_fetch_array( mysqli_query($db,"SELECT * FROM question_tot WHERE question='".$question."'") ) );
+		$id = mysqli_insert_id($db);
+		echo "<h1>".$id."</h1></br>";
 		echo $_POST['type_question']."</br>";
 		if($_POST['type_question']=="qcm"){
 			for($i=0;$i<=3;$i++){
 				if(!empty($_POST['reponse'.$i])){
 					$reponse=modif($_POST['reponse'.$i]);
 					if(isset($_POST['vrai'.$i])){
-						mysqli_query($db,"INSERT INTO reponse_tot (reponse,ref_question,state) VALUES('".$reponse."','".$id_question."','1')");
+						mysqli_query($db,"INSERT INTO reponse_tot (reponse,ref_question,state) VALUES('".$reponse."','".$id."','1')");
 					}
 					else{
-						mysqli_query($db,"INSERT INTO reponse_tot (reponse,ref_question,state) VALUES('".$reponse."','".$id_question."','0')");
+						mysqli_query($db,"INSERT INTO reponse_tot (reponse,ref_question,state) VALUES('".$reponse."','".$id."','0')");
 					}
 				}
 			}
@@ -75,12 +76,12 @@ if(isset($_SESSION['id_user']) and $_SESSION['id_user']==0){
 					extract($l);
 					echo "<input type='radio' name='mat_question' value='".$id_matiere."'>".$name_matiere."</br>";
 					$r1 = mysqli_query($db,"SELECT * FROM chapitres WHERE matiere='".$id_matiere."'");
-					while($l1 = mysqli_fetch_array($r1) ){
-						extract($l1);
-						echo "<div class='chap_question' id='chap".$id_matiere."'>";
-							echo "<input type='radio' class='chap_single_question' name='chap_question' value='".$id_chapitre."'>".$name_chapitre."</br>";
-						echo "</div>";
-					}
+					echo "<div class='chap_question' id='chap".$id_matiere."'>";
+						while($l1 = mysqli_fetch_array($r1) ){
+							extract($l1);
+								echo "<input type='radio' class='chap_single_question' name='chap_question' value='".$id_chapitre."'>".$name_chapitre."</br>";
+						}
+					echo "</div>";
 				}
 				echo "commentaire : <textarea name='commentaire'></textarea></br></br>";
 				echo "<input type='submit' name='ajouter' value='valider'>";
