@@ -7,11 +7,14 @@
 <script src="jquery.js" type="text/javascript"></script>		
 <html>
 	<?php
-	$heure=date('H');
+	$heure=date('H')+1;
 	$today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
 	include "connection.php";
 	if(isset($_SESSION['id_user']) and $_SESSION['id_user']==0){
-			
+		
+		if(isset($_POST['finish'])){
+			mysqli_query($db,"UPDATE information SET date_fin='".$today."'");
+		}
 		if(isset($_POST['valider'])){
 			mysqli_query($db,"UPDATE information SET date_debut='".$_POST['dd']."', date_fin='".$_POST['df']."'");
 			mysqli_query($db,"DELETE FROM resultat");
@@ -84,6 +87,11 @@
 					echo "</div>";
 				echo "</div>";
 				echo $today."</br>";
+				echo "<div style='width:100px;margin:auto;'>";
+					echo "<form method='POST'>";
+						echo "<input type='submit' name='finish' style='height:50px; background-color:red;color:white;' value='Terminer'>";
+					echo "</form>";
+				echo "</div>";
 				echo "<div class='bloc_admin'>";
 					echo "<H1>Ma prochaine session</H1>";
 					echo "<a href='pdf.php'>Télécharger pdf</a></br></br>";
