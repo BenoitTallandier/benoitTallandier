@@ -13,7 +13,7 @@ include "connection.php";
 $heure=date('H')+1;
 $today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
 $bonne_reponse = 1;
-$fausse_reponse = 0;
+$fausse_reponse = -1;
 // fin de prise d'info
 $Result=mysqli_query($db,"SELECT * FROM information ORDER BY id_info DESC LIMIT 1");
 if($Result)

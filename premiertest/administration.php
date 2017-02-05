@@ -65,8 +65,10 @@
 							$note=0;
 							extract($Line);
 							
-							if($result1 = mysqli_query($db,"SELECT * FROM resultat WHERE id_user=".$id_user." AND point='1'")){
-								$note = mysqli_num_rows($result1);
+							if($result1 = mysqli_query($db,"SELECT SUM(point) AS summ FROM resultat WHERE id_user=".$id_user."")){
+								$l = mysqli_fetch_array($result1);
+								extract($l);
+								$note = $summ;
 							}
 							$note=$note/$total*20;
 							echo "<TR>";
