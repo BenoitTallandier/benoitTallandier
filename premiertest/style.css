@@ -66,10 +66,9 @@ a:hover{
 	display : none;
 }
 #val_question{
-	width : 200px;
+	min-width: 200px;
 	font-family : "rockwell";
 	font-size : 20px;
-	width : 100px;
 }
 
 #bloc_resultat{
@@ -149,7 +148,7 @@ a:hover{
 }
 
 @media screen and (max-width: 1500px){
-	
+
 	#bloc_index{
 		font-size : 30px;
 		width : 830px;
@@ -165,7 +164,7 @@ a:hover{
 		font-family : "rockwell";
 		font-size : 40px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;
@@ -204,7 +203,7 @@ a:hover{
 }
 
 @media screen and (max-width: 980px){
-	
+
 	#bloc_index{
 		font-size : 30px;
 		width : 830px;
@@ -221,7 +220,7 @@ a:hover{
 		font-family : "rockwell";
 		font-size : 40px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;
@@ -262,7 +261,7 @@ a:hover{
 }
 
 @media screen and (max-width: 780px){
-	
+
 	#bloc_index{
 		font-size : 20px;
 		width : 630px;
@@ -278,7 +277,7 @@ a:hover{
 		font-family : "rockwell";
 		font-size : 30px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;
@@ -319,7 +318,7 @@ a:hover{
 }
 
 @media screen and (max-width: 680px){
-	
+
 	#bloc_index{
 		font-size : 20px;
 		width : 530px;
@@ -335,7 +334,7 @@ a:hover{
 		font-family : "rockwell";
 		font-size : 30px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;
@@ -377,7 +376,7 @@ a:hover{
 
 
 @media screen and (max-width: 580px){
-	
+
 	#bloc_index{
 		font-size : 20px;
 		width : 430px;
@@ -393,7 +392,7 @@ a:hover{
 		font-family : "rockwell";
 		font-size : 30px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;
@@ -434,7 +433,7 @@ a:hover{
 }
 
 @media screen and (max-width: 480px){
-	
+
 	#bloc_index{
 		font-size : 20px;
 		width : 300px;
@@ -449,7 +448,7 @@ a:hover{
 		width : 280px;
 		font-size : 30px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;
@@ -493,7 +492,7 @@ a:hover{
 }
 
 @media screen and (max-width: 380px){
-	
+
 	#bloc_index{
 		font-size : 20px;
 		width : 220px;
@@ -509,7 +508,7 @@ a:hover{
 		font-family : "rockwell";
 		font-size : 30px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;
@@ -550,7 +549,7 @@ a:hover{
 }
 
 @media screen and (max-width: 280px){
-	
+
 	#bloc_index{
 		font-size : 20px;
 		width : 190px;
@@ -566,7 +565,7 @@ a:hover{
 		font-family : "rockwell";
 		font-size : 30px;
 	}
-	
+
 
 	#bloc_question{
 		text-align : center;

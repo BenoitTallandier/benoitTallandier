@@ -58,25 +58,27 @@ else
 		$point = 0;
 		$valide = true;
 		$repo = 0;
+		$tot = mysqli_num_rows(mysqli_query($db,"SELECT * FROM reponse WHERE ref_question='".$_POST['question']."'"));
 		$nb = mysqli_num_rows(mysqli_query($db,"SELECT * FROM reponse WHERE ref_question='".$_POST['question']."' AND state=1"));
 		for($ipost = 0;$ipost<$_POST['nb_rep'];$ipost++){
-			
 			if(isset($_POST['rep'.$ipost])){
 				$result = mysqli_query($db,"SELECT * FROM reponse WHERE id_reponse='".$_POST['rep'.$ipost]."' AND state=1");
-				if($result!=false and mysqli_num_rows($result)!=0){$repo+=1;}
-				else{$valide = false;}
-
+				if($result!=false and mysqli_num_rows($result)!=0){$point+=1;}
+				else{$point=$point-1;}
 			}
 		}
-		if($valide == true and $nb == $repo){$point = $bonne_reponse;}
-		else{$point = $fausse_reponse;}
-		mysqli_query($db,"INSERT INTO resultat (id_user,ref_question,point) VALUES (".$_SESSION['id_user'].",'".$_POST['question']."','".$point."')");						
+		$point = $point/$nb;
+		mysqli_query($db,"INSERT INTO resultat (id_user,ref_question,point) VALUES (".$_SESSION['id_user'].",'".$_POST['question']."','".$point."')");
 		// header("Location: question.php");
 		echo "<meta http-equiv='refresh' content='0;URL=question.php'>";
 
 	}
+	if(isset($_POST['neRepondPas'])){
+		mysqli_query($db,"INSERT INTO resultat (id_user,ref_question,point) VALUES (".$_SESSION['id_user'].",'".$_POST['question']."','0')");
+		echo "<meta http-equiv='refresh' content='0;URL=question.php'>";
+	}
 	else{
-		
+
 		$r = mysqli_query($db,"SELECT * FROM question");
 		$total = mysqli_num_rows($r);
 		$Query = "SELECT * FROM  question WHERE id_question NOT IN (SELECT ref_question FROM resultat WHERE id_user=".$_SESSION['id_user'].") ORDER BY RAND() ";
@@ -103,18 +105,18 @@ else
 			echo "<div id='bloc_question'>";
 				echo $question."</BR></br>";
 				$Result2 = mysqli_query($db,"SELECT * FROM reponse WHERE ref_question=".$id_question);
-			
 				echo "<form method='POST'>";
 					$iform = 0;
 					while($Line=mysqli_fetch_array($Result2)){
 						extract($Line);
-						echo "<div class='c_question' num=".$id_reponse."><input type='checkbox' class='reponse input_question' name='rep".$iform."' id='id_reponse".$id_reponse."' value='".$id_reponse."'>".$reponse."</div></br>";					
+						echo "<div class='c_question' num=".$id_reponse."><input type='checkbox' class='reponse input_question' name='rep".$iform."' id='id_reponse".$id_reponse."' value='".$id_reponse."'>".$reponse."</div></br>";
 						$iform+=1;
 					}
 					echo "<input type='hidden' name='nb_rep' value='".$iform."'>";
 					echo "<input type='hidden' name='question' value='".$id_question."'>";
-					echo "</br><input id='val_question' type='submit' name='valider' value='valider'>";						
-					echo "<input id='val_question' type='submit' name='passe' value='passer'>";						
+					echo "</br></br><input id='val_question' type='submit' name='valider' value='valider'>";
+					echo "</br></br><input id='val_question' type='submit' name='neRepondPas' value='Je ne peux pas répondre'>";
+					echo "</br></br><input id='val_question' type='submit' name='passe' value='Je reviendrai plus tard'>";
 				echo "</form>";
 				$pour = ($total-$nombre)/$total *100;
 				echo "<div style='float:right;color:grey;'>".$pour."%,</div>";

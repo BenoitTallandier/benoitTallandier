@@ -3,15 +3,15 @@
 <link rel="stylesheet" href="style.css" />
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <meta charset="UTF-8">
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>		
-<script src="jquery.js" type="text/javascript"></script>		
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+<script src="jquery.js" type="text/javascript"></script>
 <html>
 	<?php
 	$heure=date('H')+1;
 	$today = date('Y')."-".date('m')."-".date('d')." ".$heure.":".date('i').":".date('s')."";
 	include "connection.php";
 	if(isset($_SESSION['id_user']) and $_SESSION['id_user']==0){
-		
+
 		if(isset($_POST['finish'])){
 			mysqli_query($db,"UPDATE information SET date_fin='".$today."'");
 		}
@@ -19,12 +19,12 @@
 			mysqli_query($db,"UPDATE information SET date_debut='".$_POST['dd']."', date_fin='".$_POST['df']."'");
 			mysqli_query($db,"DELETE FROM resultat");
 			mysqli_query($db,"DELETE FROM question");
-			mysqli_query($db,"DELETE FROM resultat");	
+			mysqli_query($db,"DELETE FROM reponse");	
 			mysqli_query($db,"DELETE FROM users");
 			for($i=0;$i<$_POST['iform'];$i++){
 				if(isset($_POST['question'.$i])){
 					mysqli_query($db,"INSERT INTO question (SELECT * FROM question_tot WHERE id_question=".$_POST['question'.$i].")");
-					mysqli_query($db,"INSERT INTO reponse (SELECT * FROM reponse_tot WHERE ref_question=".$_POST['question'.$i].")");	
+					mysqli_query($db,"INSERT INTO reponse (SELECT * FROM reponse_tot WHERE ref_question=".$_POST['question'.$i].")");
 				}
 			}
 		}
@@ -40,7 +40,7 @@
 							echo"<TD class='question_admin'>Nom</TD>";
 							echo"<TD class='question_admin'>Note</TD>";
 							if($re = mysqli_query($db,"SELECT * FROM users")){
-								$nbUser = mysqli_num_rows($re);								
+								$nbUser = mysqli_num_rows($re);
 							}
 							else{
 								$nbUser = 2;
@@ -51,7 +51,7 @@
 								$pour = 0;
 								if($result1 = mysqli_query($db,"SELECT * FROM resultat WHERE ref_question='".$id_question."' AND point='1'")){
 									$pour = mysqli_num_rows($result1);
-									
+
 								}
 								$pour = $pour/$nbUser * 100;
 								echo"<TD class='question_admin'>".$question."<div style='font-size:10px;'>".round($pour,1)."%</div></TD>";
@@ -64,7 +64,7 @@
 						{
 							$note=0;
 							extract($Line);
-							
+
 							if($result1 = mysqli_query($db,"SELECT SUM(point) AS summ FROM resultat WHERE id_user=".$id_user."")){
 								$l = mysqli_fetch_array($result1);
 								extract($l);
@@ -82,7 +82,7 @@
 										else{echo"<TD style='background-color:red;'>F</TD>";}
 										}
 								}
-								
+
 							echo "<TR>";
 						}
 						echo "</TABLE>";
@@ -108,8 +108,8 @@
 							echo "<li>".$question."</li>";
 						}
 					echo "</ul>";
-				echo "</div>";	
-				
+				echo "</div>";
+
 				echo "<div class='bloc_admin'>";
 					echo "</br></br></br><H2>Creer une nouvelle session :</H2> 	";
 						echo "<form method='POST'>";
@@ -133,10 +133,10 @@
 												echo "<input type='checkbox' name='question".$iform."' value='".$id_question."'>".$question."</input></br>";
 											$iform+=1;
 											}
-										
+
 										echo"</div>";
 									}
-								echo "</div>";							
+								echo "</div>";
 							}
 						echo "<input type='hidden' name='iform' value=".$iform.">";
 						echo "</br><input type='submit' name='valider' value='valider'>";
